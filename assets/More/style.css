@@ -1,0 +1,36 @@
+body{
+   background-color: White;
+}
+
+.a{
+    text-decoration: none;
+}
+
+.white{
+    color: black;
+}
+
+.forest{
+    height: auto;
+    width: auto;
+}
+
+.fish{
+    height: auto;
+    width: auto;
+}
+
+.deforest {
+    width: 10;
+    height: 10;
+}
+
+.meme{
+    width: 300px;
+    height: 300px;
+
+}
+
+.black{
+    color: black;
+}
