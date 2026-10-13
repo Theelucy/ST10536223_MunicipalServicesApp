@@ -330,7 +330,7 @@ namespace MunicipalServicesApp.Forms
             this.btnLocalEvents.Name = "btnLocalEvents";
             this.btnLocalEvents.Size = new System.Drawing.Size(280, 126);
             this.btnLocalEvents.TabIndex = 1;
-            this.btnLocalEvents.Text = "Local Events and\nAnnouncements\n\nComing in Part 2";
+            this.btnLocalEvents.Text = "Local Events and\nAnnouncements";
             this.btnLocalEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLocalEvents.UseVisualStyleBackColor = false;
             //
@@ -346,7 +346,7 @@ namespace MunicipalServicesApp.Forms
             this.btnServiceStatus.Name = "btnServiceStatus";
             this.btnServiceStatus.Size = new System.Drawing.Size(280, 126);
             this.btnServiceStatus.TabIndex = 2;
-            this.btnServiceStatus.Text = "Service Request\nStatus\n\nComing in Part 2";
+            this.btnServiceStatus.Text = "Service Request\nStatus";
             this.btnServiceStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnServiceStatus.UseVisualStyleBackColor = false;
             //

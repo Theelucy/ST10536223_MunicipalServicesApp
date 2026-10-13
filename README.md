@@ -1,11 +1,11 @@
-# Municipal Services Application — Part 1 (Report Issues)
+# Municipal Services Application — Part 1 + Part 2 Update
 
 A C# .NET Framework (4.8) Windows Forms application that lets residents of a
 South African municipality report service issues (potholes, water leaks,
-sanitation problems, etc.). This is Part 1 of the PoE: only the **Report
-Issues** task is implemented. **Local Events and Announcements** and
-**Service Request Status** are visible on the main menu but disabled, as
-required by the brief — they will be built in Part 2.
+sanitation problems, etc.). The application now includes the Part 2 work as
+well: **Local Events and Announcements** and **Service Request Status** are
+available from the main menu, with search, filtering, recommendations and
+status tracking built into the experience.
 
 ## Requirements to run this project
 

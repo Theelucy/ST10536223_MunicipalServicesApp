@@ -4,9 +4,7 @@ using MunicipalServicesApp.Forms;
 
 namespace MunicipalServicesApp
 {
-    /// <summary>
-    /// Application entry point.
-    /// </summary>
+
     internal static class Program
     {
         [STAThread]

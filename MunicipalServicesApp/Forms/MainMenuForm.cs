@@ -17,6 +17,10 @@ namespace MunicipalServicesApp.Forms
         public MainMenuForm()
         {
             InitializeComponent();
+            btnLocalEvents.Enabled = true;
+            btnServiceStatus.Enabled = true;
+            btnLocalEvents.Click += btnLocalEvents_Click;
+            btnServiceStatus.Click += btnServiceStatus_Click;
         }
 
         private void MainMenuForm_Load(object sender, EventArgs e)
@@ -86,6 +90,30 @@ namespace MunicipalServicesApp.Forms
             {
                 this.Hide();
                 reportForm.ShowDialog();
+                this.Show();
+            }
+
+            RefreshDashboard();
+        }
+
+        private void btnLocalEvents_Click(object sender, EventArgs e)
+        {
+            using (var localEventsForm = new LocalEventsForm())
+            {
+                this.Hide();
+                localEventsForm.ShowDialog();
+                this.Show();
+            }
+
+            RefreshDashboard();
+        }
+
+        private void btnServiceStatus_Click(object sender, EventArgs e)
+        {
+            using (var statusForm = new ServiceRequestStatusForm())
+            {
+                this.Hide();
+                statusForm.ShowDialog();
                 this.Show();
             }
 

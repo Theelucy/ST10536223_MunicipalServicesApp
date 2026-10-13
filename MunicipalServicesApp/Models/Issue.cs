@@ -36,15 +36,7 @@ namespace MunicipalServicesApp.Models
         }
     }
 
-    /// <summary>
-    /// Simple in-memory repository for reported issues.
-    /// A generic List&lt;Issue&gt; is used because the number of issues is not known
-    /// in advance and issues need to be added, iterated and (in later parts of the
-    /// PoE) filtered/searched - operations a List handles efficiently for this
-    /// application's scale. Being static keeps the data available across forms
-    /// (e.g. for the future "Service Request Status" screen) without needing a
-    /// database for this part of the project.
-    /// </summary>
+
     public static class IssueRepository
     {
         private static readonly List<Issue> _issues = new List<Issue>();
@@ -88,12 +80,6 @@ namespace MunicipalServicesApp.Models
             return count;
         }
     }
-
-    /// <summary>
-    /// Small shared helpers so every screen that displays a status (the
-    /// dashboard's recent list, the report form's status label, and its
-    /// "My Reported Issues" grid) renders it identically.
-    /// </summary>
     public static class IssueStatusHelper
     {
         public static string GetShortText(IssueStatus status)

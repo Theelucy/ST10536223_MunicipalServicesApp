@@ -2,11 +2,7 @@ using System.Drawing;
 
 namespace MunicipalServicesApp
 {
-    /// <summary>
-    /// Centralised colour palette and fonts so every form in the application
-    /// shares a single, consistent visual identity (see "Consistency" under
-    /// Design Considerations in the brief).
-    /// </summary>
+  
     public static class AppTheme
     {
         public static readonly Color HeaderDark = Color.FromArgb(31, 45, 61);
