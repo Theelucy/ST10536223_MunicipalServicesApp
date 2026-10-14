@@ -196,25 +196,28 @@ namespace MunicipalServicesApp.Forms
 
             var lblRecommendationTitle = new Label
             {
-                AutoSize = true,
+                AutoSize = false,
                 Font = AppTheme.FontSectionHeader,
                 ForeColor = AppTheme.PrimaryDark,
-                Text = "Recommended for you"
+                Text = "Recommended for you",
+                Dock = DockStyle.Top,
+                Height = 35,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Margin = new Padding(0, 0, 0, 8)
             };
 
             lstRecommendations = new ListBox
             {
                 Dock = DockStyle.Fill,
                 BorderStyle = BorderStyle.None,
-                Font = AppTheme.FontBody,
+                Font = new Font("Segoe UI", 10F),
                 BackColor = Color.White,
-                Margin = new Padding(0, 18, 0, 0)
+                ForeColor = AppTheme.PrimaryDark,
+                ItemHeight = 24
             };
 
             recommendationPanel.Controls.Add(lblRecommendationTitle);
             recommendationPanel.Controls.Add(lstRecommendations);
-            recommendationPanel.Controls.SetChildIndex(lblRecommendationTitle, 0);
-            recommendationPanel.Controls.SetChildIndex(lstRecommendations, 1);
 
             var gridPanel = new Panel
             {
@@ -254,8 +257,15 @@ namespace MunicipalServicesApp.Forms
                 MultiSelect = false,
                 BackgroundColor = Color.White,
                 BorderStyle = BorderStyle.None,
-                ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
-                Font = new Font("Segoe UI", 10F)
+                ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize,
+                Font = new Font("Segoe UI", 10F),
+                // Improve readability: distribute columns, add padding and a slightly larger row height
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None,
+                RowTemplate = { Height = 30 },
+                DefaultCellStyle = { Padding = new Padding(6, 4, 6, 4) },
+                EnableHeadersVisualStyles = false,
+                ColumnHeadersDefaultCellStyle = { Padding = new Padding(6, 4, 6, 4), BackColor = Color.White }
             };
 
             dgvEvents.Columns.Add(new DataGridViewTextBoxColumn { Name = "Title", HeaderText = "Event", Width = 210, ReadOnly = true });
@@ -352,10 +362,11 @@ namespace MunicipalServicesApp.Forms
             {
                 foreach (var localEvent in recommendations)
                 {
-                    lstRecommendations.Items.Add(string.Format("• {0} ({1}) - {2}",
+                    string eventText = string.Format("{0} ({1}) - {2}",
                         localEvent.Title,
                         localEvent.Category,
-                        localEvent.EventDate.ToString("ddd, dd MMM")));
+                        localEvent.EventDate.ToString("ddd, dd MMM"));
+                    lstRecommendations.Items.Add(eventText);
                 }
             }
 

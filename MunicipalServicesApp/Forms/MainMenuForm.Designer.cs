@@ -447,6 +447,8 @@ namespace MunicipalServicesApp.Forms
             this.lblFooter.TabIndex = 6;
             this.lblFooter.Text = "Municipal Services Application  -  PoE Part 1";
             this.lblFooter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // hide footer text as not required on all pages
+            this.lblFooter.Visible = false;
             //
             // MainMenuForm
             //

@@ -96,6 +96,12 @@ namespace MunicipalServicesApp.Forms
                 MultiSelect = false,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 Font = AppTheme.FontBody,
+                ForeColor = Color.Black,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    ForeColor = Color.Black,
+                    BackColor = Color.White
+                },
                 ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
                 {
                     BackColor = AppTheme.PrimaryDark,
@@ -105,28 +111,42 @@ namespace MunicipalServicesApp.Forms
             };
 
             dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Ref", HeaderText = "Ref #", Width = 80, ReadOnly = true });
-            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Category", HeaderText = "Category", Width = 160, ReadOnly = true });
-            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Location", HeaderText = "Location", Width = 220, ReadOnly = true });
-            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = "Status", Width = 170, ReadOnly = true });
-            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Date", HeaderText = "Reported", Width = 150, ReadOnly = true });
-            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Description", HeaderText = "Description", Width = 200, ReadOnly = true });
+            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Category", HeaderText = "Category", Width = 120, ReadOnly = true });
+            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Location", HeaderText = "Location", Width = 150, ReadOnly = true });
+            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = "Status", Width = 120, ReadOnly = true });
+            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Date", HeaderText = "Reported", Width = 130, ReadOnly = true });
+            dgvStatus.Columns.Add(new DataGridViewTextBoxColumn { Name = "Description", HeaderText = "Description", Width = 300, ReadOnly = true });
+
+            // create a bottom panel to host the Back button so it does not overlap the grid
+            var bottomPanel = new Panel
+            {
+                Dock = DockStyle.Bottom,
+                Height = 56,
+                BackColor = AppTheme.Background,
+                Padding = new Padding(16, 8, 16, 8)
+            };
 
             btnBack = new Button
             {
                 Text = "Back to Main Menu",
                 Width = 170,
                 Height = 35,
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+                Anchor = AnchorStyles.Right | AnchorStyles.Bottom,
                 BackColor = AppTheme.Success,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
-                Font = AppTheme.FontButton,
-                Margin = new Padding(0, 8, 0, 0)
+                Font = AppTheme.FontButton
             };
             btnBack.FlatAppearance.BorderSize = 0;
 
+            // position the button to the right inside bottomPanel
+            btnBack.Location = new Point(bottomPanel.Width - btnBack.Width - 8, 8);
+            // when the panel resizes, keep button at right
+            bottomPanel.Resize += (s, e) => { btnBack.Location = new Point(bottomPanel.Width - btnBack.Width - 8, 8); };
+
             tablePanel.Controls.Add(dgvStatus);
-            tablePanel.Controls.Add(btnBack);
+            tablePanel.Controls.Add(bottomPanel);
+            bottomPanel.Controls.Add(btnBack);
 
             this.Controls.Add(tablePanel);
             this.Controls.Add(statPanel);
@@ -171,8 +191,12 @@ namespace MunicipalServicesApp.Forms
                 dgvStatus.Rows[rowIndex].Cells["Status"].Value = IssueStatusHelper.GetShortText(issue.Status);
                 dgvStatus.Rows[rowIndex].Cells["Date"].Value = issue.DateReported.ToString("dd MMM yyyy");
                 dgvStatus.Rows[rowIndex].Cells["Description"].Value = issue.Description;
-                dgvStatus.Rows[rowIndex].DefaultCellStyle.ForeColor = IssueStatusHelper.GetColor(issue.Status);
-                dgvStatus.Rows[rowIndex].DefaultCellStyle.SelectionForeColor = IssueStatusHelper.GetColor(issue.Status);
+
+                // Set the background color based on status, but keep text black for readability
+                dgvStatus.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
+                dgvStatus.Rows[rowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                dgvStatus.Rows[rowIndex].DefaultCellStyle.SelectionBackColor = IssueStatusHelper.GetColor(issue.Status);
+                dgvStatus.Rows[rowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
             }
 
             if (dgvStatus.Rows.Count == 0)
